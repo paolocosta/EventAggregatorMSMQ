@@ -23,13 +23,11 @@ namespace Server
         }
     }
 
-
     public class Listener3 : IListener<Event2>, IListener<Event1>
     {
         public void Handle(Event1 receivedEvent)
         {
             Console.WriteLine("Listener3 " + receivedEvent.ToString());
-            
         }
 
         public void Handle(Event2 receivedEvent)
