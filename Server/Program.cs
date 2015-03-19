@@ -27,17 +27,10 @@ namespace Server
 
         private static void StartQueue<T>() where T:Event
         {
-            MessageQueue msgQ = new MessageQueue(string.Format(".\\Private$\\{0}", typeof(T).FullName));
-            
-                System.Type[] arrTypes = new System.Type[2];
-                arrTypes[0] = typeof(T);
-                arrTypes[1] = typeof(object);
-                
-                msgQ.Formatter = new XmlMessageFormatter(arrTypes);
-
+            DataAccessLayer.QueueManager q = new DataAccessLayer.QueueManager();
             while(true)
             {
-                T obj = msgQ.Receive().Body as T;
+                T obj = q.ReceiveMessage() as T;
                 e.Publish(obj);
             }
         }

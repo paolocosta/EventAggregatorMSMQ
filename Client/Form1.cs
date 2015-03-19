@@ -24,11 +24,14 @@ namespace Client
             
                 Event1 ev = new Event1 { Id = 4, Name = "Paolo Costa" };
 
-                if (!MessageQueue.Exists(string.Format(".\\Private$\\{0}", ev.GetType().FullName))) MessageQueue.Create(string.Format(".\\Private$\\{0}", ev.GetType().FullName));
-                System.Messaging.Message msg = new System.Messaging.Message();
-                msg.Body = ev;
-                MessageQueue msgQ = new MessageQueue(string.Format(".\\Private$\\{0}", ev.GetType().FullName));
-                msgQ.Send(msg);
+                DataAccessLayer.QueueManager q = new DataAccessLayer.QueueManager();
+                q.SendMessage(ev);
+
+                //if (!MessageQueue.Exists(string.Format(".\\Private$\\{0}", ev.GetType().FullName))) MessageQueue.Create(string.Format(".\\Private$\\{0}", ev.GetType().FullName));
+                //System.Messaging.Message msg = new System.Messaging.Message();
+                //msg.Body = ev;
+                //MessageQueue msgQ = new MessageQueue(string.Format(".\\Private$\\{0}", ev.GetType().FullName));
+                //msgQ.Send(msg);
             
         }
 
