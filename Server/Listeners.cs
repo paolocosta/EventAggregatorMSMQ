@@ -11,7 +11,7 @@ namespace Server
     {
         public void Handle(Event1 receivedEvent)
         {
-            Console.WriteLine("Listener 1" + receivedEvent.ToString());
+            Console.WriteLine("Listener 1 " + receivedEvent.ToString());
         }
     }
 
